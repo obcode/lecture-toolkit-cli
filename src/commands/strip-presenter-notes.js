@@ -139,3 +139,12 @@ export function runStripPresenterNotes(argv) {
 
   process.stdout.write(stripPresenterNotesFile(inputPath))
 }
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  try {
+    runStripPresenterNotes(process.argv.slice(2))
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error))
+    process.exit(1)
+  }
+}
