@@ -8,6 +8,12 @@ Reusable CLI toolkit for Slidev-based lecture repositories.
 pnpm add -D github:obcode/lecture-toolkit-cli#v0.1.0
 ```
 
+via GitHub Packages (npm registry):
+
+```bash
+pnpm add -D @obcode/lecture-toolkit-cli
+```
+
 or run on demand:
 
 ```bash
@@ -97,9 +103,19 @@ This repository is configured for Semantic Release via GitHub Actions.
 - Config: `.releaserc.json`
 - Trigger: push to `main`
 
-Required GitHub repository secrets:
+The release workflow publishes:
 
-- no extra secrets required (uses `GITHUB_TOKEN`)
+- Git tag + GitHub Release
+- npm package to GitHub Packages (`npm.pkg.github.com`)
+
+No extra secrets are required for same-repo publishing. The workflow maps `NPM_TOKEN` to `GITHUB_TOKEN` and requires `packages: write` permission.
+
+To consume the package from GitHub Packages, configure `.npmrc` in the consuming repo or user profile:
+
+```ini
+@obcode:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
 
 Use Conventional Commits for release versioning, for example:
 
