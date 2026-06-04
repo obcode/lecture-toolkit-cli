@@ -108,7 +108,11 @@ The release workflow publishes:
 - Git tag + GitHub Release
 - npm package to GitHub Packages (`npm.pkg.github.com`)
 
-No extra secrets are required for same-repo publishing. The workflow maps `NPM_TOKEN` to `GITHUB_TOKEN` and requires `packages: write` permission.
+Required repository secret:
+
+- `GH_PACKAGES_TOKEN`: classic PAT (or fine-grained token) with `write:packages` (and `read:packages`) for owner `obcode`.
+
+The workflow maps `NPM_TOKEN` and `NODE_AUTH_TOKEN` to `GH_PACKAGES_TOKEN` and also uses `GITHUB_TOKEN` for release/tag operations.
 
 To consume the package from GitHub Packages, configure `.npmrc` in the consuming repo or user profile:
 
