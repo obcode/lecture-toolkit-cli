@@ -26,6 +26,8 @@ lecture-toolkit export-pdf-deck <deck>
 lecture-toolkit export-pdfs
 ```
 
+`dev-deck` starts `watch-notes` automatically so `notes.md` is generated and updated while developing slides.
+
 `<deck>` supports:
 
 - Prefix lookup like `09-DFS-BFS`
