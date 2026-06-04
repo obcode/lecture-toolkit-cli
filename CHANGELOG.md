@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/obcode/lecture-toolkit-cli/compare/v0.3.0...v0.3.1) (2026-06-04)
+
+
+### Bug Fixes
+
+* use dedicated token for GitHub Packages publish ([f8697eb](https://github.com/obcode/lecture-toolkit-cli/commit/f8697eb4e9b84ccf09965f8185fab2e42b15b153))
+
 # [0.3.0](https://github.com/obcode/lecture-toolkit-cli/compare/v0.2.2...v0.3.0) (2026-06-04)
 
 
