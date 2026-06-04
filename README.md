@@ -5,7 +5,7 @@ Reusable CLI toolkit for Slidev-based lecture repositories.
 ## Install
 
 ```bash
-pnpm add -D lecture-toolkit-cli
+pnpm add -D github:obcode/lecture-toolkit-cli#v0.1.0
 ```
 
 or run on demand:
@@ -54,7 +54,7 @@ build-all:
 		- pnpm exec lecture-toolkit build-all
 ```
 
-## npm Release Automation
+## GitHub Release Automation
 
 This repository is configured for Semantic Release via GitHub Actions.
 
@@ -64,7 +64,7 @@ This repository is configured for Semantic Release via GitHub Actions.
 
 Required GitHub repository secrets:
 
-- `NPM_TOKEN`: npm automation token with publish permission for `lecture-toolkit-cli`
+- no extra secrets required (uses `GITHUB_TOKEN`)
 
 Use Conventional Commits for release versioning, for example:
 
