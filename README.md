@@ -54,6 +54,24 @@ build-all:
 		- pnpm exec lecture-toolkit build-all
 ```
 
+## npm Release Automation
+
+This repository is configured for Semantic Release via GitHub Actions.
+
+- Workflow: `.github/workflows/release.yml`
+- Config: `.releaserc.json`
+- Trigger: push to `main`
+
+Required GitHub repository secrets:
+
+- `NPM_TOKEN`: npm automation token with publish permission for `lecture-toolkit-cli`
+
+Use Conventional Commits for release versioning, for example:
+
+- `fix: ...` -> patch release
+- `feat: ...` -> minor release
+- `feat!: ...` or `BREAKING CHANGE:` -> major release
+
 ## Notes Export Format
 
 `export-notes` writes:
