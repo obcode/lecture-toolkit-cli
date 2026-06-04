@@ -22,11 +22,44 @@ lecture-toolkit watch-notes <deck>
 lecture-toolkit dev-deck <deck>
 lecture-toolkit build-deck <deck>
 lecture-toolkit build-all
+lecture-toolkit build-index
 lecture-toolkit export-pdf-deck <deck>
 lecture-toolkit export-pdfs
+lecture-toolkit render-dot
+lecture-toolkit render-tikz
+lecture-toolkit generate-changelogs
+lecture-toolkit strip-presenter-notes <slides.md>
 ```
 
 `dev-deck` starts `watch-notes` automatically so `notes.md` is generated and updated while developing slides.
+
+## Repository Config
+
+Create `lecture-toolkit.config.json` in your lecture repository root to customize shared behavior.
+
+Example:
+
+```json
+{
+	"index": {
+		"eyebrow": "Vorlesungsfolien",
+		"courseTitle": "Moderne Programmierkonzepte und Datenstrukturen",
+		"subtitle": "Prof. Dr. Oliver Braun",
+		"siteTitle": "Moderne Programmierkonzepte und Datenstrukturen - Prof. Dr. Oliver Braun",
+		"locale": "de-DE",
+		"timezone": "Europe/Berlin"
+	},
+	"changelog": {
+		"globalResetDefault": "2026-05-18"
+	}
+}
+```
+
+`build-index` also supports CLI overrides such as:
+
+```bash
+pnpm exec lecture-toolkit build-index --course-title "Algorithms" --subtitle "Prof. Ada" --site-title "Algorithms - Prof. Ada"
+```
 
 `<deck>` supports:
 
