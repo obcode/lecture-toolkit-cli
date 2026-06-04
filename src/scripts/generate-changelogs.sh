@@ -81,6 +81,11 @@ write_sanitized_revision() {
     return 0
   fi
 
+  if ! git cat-file -e "$revision" 2>/dev/null; then
+    : > "$output_file"
+    return 0
+  fi
+
   local raw_file="$output_file.raw"
   git show "$revision" > "$raw_file"
   strip_presenter_notes_to_file "$raw_file" "$output_file"
