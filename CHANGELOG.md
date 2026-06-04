@@ -1,3 +1,10 @@
+## [0.2.2](https://github.com/obcode/lecture-toolkit-cli/compare/v0.2.1...v0.2.2) (2026-06-04)
+
+
+### Bug Fixes
+
+* make strip-presenter-notes executable as standalone script ([6b92b83](https://github.com/obcode/lecture-toolkit-cli/commit/6b92b8398fdd0e62b4d97a3a5ac28a78da097c87))
+
 ## [0.2.1](https://github.com/obcode/lecture-toolkit-cli/compare/v0.2.0...v0.2.1) (2026-06-04)
 
 
