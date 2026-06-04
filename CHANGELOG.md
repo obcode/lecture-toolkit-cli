@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/obcode/lecture-toolkit-cli/compare/v0.2.2...v0.3.0) (2026-06-04)
+
+
+### Features
+
+* publish releases to GitHub Packages npm registry ([bb0a07d](https://github.com/obcode/lecture-toolkit-cli/commit/bb0a07d7cee072f42e306cc9a184a1e287c95d4c))
+
 ## [0.2.2](https://github.com/obcode/lecture-toolkit-cli/compare/v0.2.1...v0.2.2) (2026-06-04)
 
 
