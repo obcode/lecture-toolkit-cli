@@ -5,6 +5,7 @@ import { runExportNotes } from './commands/export-notes.js'
 import { runExportPdfDeck } from './commands/export-pdf-deck.js'
 import { runExportPdfs } from './commands/export-pdfs.js'
 import { runWatchNotes } from './commands/watch-notes.js'
+import process from 'node:process'
 
 function usage() {
   console.error('lecture-toolkit commands:')
@@ -52,4 +53,11 @@ export async function runCommand(argv) {
     default:
       throw new Error(`Unknown command: ${command}`)
   }
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  runCommand(process.argv.slice(2)).catch((error) => {
+    console.error(error instanceof Error ? error.message : String(error))
+    process.exit(1)
+  })
 }
