@@ -109,6 +109,20 @@ function stripSlideFrontmatter(slide) {
   return lines.slice(index + 1).join('\n').trim()
 }
 
+function trimOuterBlankLines(text) {
+  const lines = text.split(/\r?\n/)
+
+  while (lines.length > 0 && lines[0].trim() === '') {
+    lines.shift()
+  }
+
+  while (lines.length > 0 && lines[lines.length - 1].trim() === '') {
+    lines.pop()
+  }
+
+  return lines.join('\n')
+}
+
 function extractTrailingNotes(slideBody) {
   let body = slideBody.trimEnd()
   const notes = []
@@ -119,11 +133,7 @@ function extractTrailingNotes(slideBody) {
       break
     }
 
-    const content = match[1]
-      .split(/\r?\n/)
-      .map((line) => line.replace(/^\s{0,4}/, ''))
-      .join('\n')
-      .trim()
+    const content = trimOuterBlankLines(match[1])
 
     if (content) {
       notes.unshift(content)
