@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/obcode/lecture-toolkit-cli/compare/v0.3.1...v0.4.0) (2026-06-05)
+
+
+### Features
+
+* add function to trim outer blank lines from text ([0be80c0](https://github.com/obcode/lecture-toolkit-cli/commit/0be80c0214d965b05ef51c0064e2362febdf551b))
+
 ## [0.3.1](https://github.com/obcode/lecture-toolkit-cli/compare/v0.3.0...v0.3.1) (2026-06-04)
 
 
