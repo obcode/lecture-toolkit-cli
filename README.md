@@ -95,6 +95,22 @@ build-all:
 		- pnpm exec lecture-toolkit build-all
 ```
 
+## Subpath Hosting: pin Slidev to 52.15.0 (avoid 52.16.0)
+
+`build-deck`/`build-all` build each deck with a subpath base of `--base /<CI_PROJECT_NAME or "lectures">/<deck>/`, required when serving from a subfolder such as `https://<group>.pages.example.com/lectures/<deck>/`.
+
+**Slidev 52.16.0 has a regression that breaks in-deck navigation under any non-root base.** Stepping from slide 1 to 2 doubles the base path (e.g. `…/<deck>/1` → `…/<deck>/<deck>/2` → 404). The client's `getSlidePath()` started prepending `import.meta.env.BASE_URL` to the route, while the router history (`createWebHistory(BASE_URL)`) already adds it — so the base is applied twice. This affects both `history` and `hash` `routerMode`, so hash routing does **not** work around it. Reproduced and bisected: `getSlidePath` returns base-relative `/${no}` up to 52.15.0 and base-prefixed `${BASE_URL}${no}` from 52.16.0.
+
+Fix in the consuming lecture repo's `package.json` — pin Slidev to the last good version:
+
+```jsonc
+"devDependencies": {
+  "@slidev/cli": "52.15.0"   // NOT "^52.16.0" — the caret allows 52.16.0
+}
+```
+
+then `pnpm install`. Default `history` routing then produces correct URLs (`…/<deck>/2`). Once a Slidev version > 52.16.0 ships with the fix, the pin can be relaxed.
+
 ## GitHub Release Automation
 
 This repository is configured for Semantic Release via GitHub Actions.
