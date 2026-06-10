@@ -198,7 +198,9 @@ function buildOutputPath(slidesPath) {
   return path.join(path.dirname(slidesPath), 'notes.md')
 }
 
-function buildMarkdown(deckTitle, rootDir, slidesPath, slideNotes) {
+const TIMESTAMP_LABEL = 'Letzte Änderung'
+
+function buildMarkdown(deckTitle, rootDir, slidesPath, slideNotes, changedAt) {
   const relativeSlidesPath = path.relative(rootDir, slidesPath)
   const relativeNotesPath = path.relative(rootDir, buildOutputPath(slidesPath))
   const sourceUrl = buildRepoBlobUrl(rootDir, relativeSlidesPath)
@@ -209,7 +211,7 @@ function buildMarkdown(deckTitle, rootDir, slidesPath, slideNotes) {
     `# ${deckTitle} - Notizen`,
     '',
     '> [!NOTE]',
-    `> Exportiert: ${timestamp()}`,
+    `> ${TIMESTAMP_LABEL}: ${changedAt}`,
     `> Quelle: [${relativeSlidesPath}](${sourceUrl})`,
     `> Notes: [${relativeNotesPath}](${notesUrl})`,
     '',
@@ -240,6 +242,13 @@ function buildMarkdown(deckTitle, rootDir, slidesPath, slideNotes) {
   return parts.join('\n')
 }
 
+function stripTimestampLine(markdown) {
+  const prefix = `> ${TIMESTAMP_LABEL}:`
+  return splitLines(markdown)
+    .filter((line) => !line.startsWith(prefix))
+    .join('\n')
+}
+
 export function exportNotes(slidesPath, rootDir) {
   const raw = fs.readFileSync(slidesPath, 'utf8')
   const lines = stripDeckHeadmatter(splitLines(raw))
@@ -262,8 +271,18 @@ export function exportNotes(slidesPath, rootDir) {
     .filter(Boolean)
 
   const outputPath = buildOutputPath(slidesPath)
+  const previous = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, 'utf8') : null
+
+  const candidate = buildMarkdown(deckTitle, rootDir, slidesPath, slideNotes, timestamp())
+
+  if (previous && stripTimestampLine(previous) === stripTimestampLine(candidate)) {
+    // Nothing changed except the timestamp — keep the existing file (and its
+    // recorded timestamp) untouched so notes.md stays clean in git.
+    return outputPath
+  }
+
   fs.mkdirSync(path.dirname(outputPath), { recursive: true })
-  fs.writeFileSync(outputPath, buildMarkdown(deckTitle, rootDir, slidesPath, slideNotes), 'utf8')
+  fs.writeFileSync(outputPath, candidate, 'utf8')
 
   return outputPath
 }
