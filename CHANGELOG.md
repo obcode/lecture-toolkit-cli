@@ -1,3 +1,10 @@
+## [0.4.1](https://github.com/obcode/lecture-toolkit-cli/compare/v0.4.0...v0.4.1) (2026-06-10)
+
+
+### Bug Fixes
+
+* only update notes timestamp when content actually changes ([f80e999](https://github.com/obcode/lecture-toolkit-cli/commit/f80e9992cb44d8c054ffb9a37fe623b91d88d812))
+
 # [0.4.0](https://github.com/obcode/lecture-toolkit-cli/compare/v0.3.1...v0.4.0) (2026-06-05)
 
 
