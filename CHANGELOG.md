@@ -1,3 +1,10 @@
+## [0.4.2](https://github.com/obcode/lecture-toolkit-cli/compare/v0.4.1...v0.4.2) (2026-11-23)
+
+
+### Bug Fixes
+
+* **deps:** clear Dependabot security alerts ([#1](https://github.com/obcode/lecture-toolkit-cli/issues/1)) ([e0dff1a](https://github.com/obcode/lecture-toolkit-cli/commit/e0dff1a4d88aebcb6b33d1a7924a8666d65ff9cc))
+
 ## [0.4.1](https://github.com/obcode/lecture-toolkit-cli/compare/v0.4.0...v0.4.1) (2026-06-10)
 
 
